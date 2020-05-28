@@ -23,7 +23,8 @@ def sendMessage(event = None):
 	messagebox.showinfo('Success', 'Successfully message sent.')
 
 def register(userName, password, homeWindow):
-	response = webChat_session.get("http://165.22.14.77:8080/Naveen/28may/register.jsp?UserName="+userName+"&Password="+password)
+	# response = webChat_session.get("http://165.22.14.77:8080/Naveen/28may/register.jsp?UserName="+userName+"&Password="+password)
+	response = webChat_session.get(f'{url}/register.jsp?UserName={userName}&Password={password}')
 	if(response.text.find("success")) > 0:
 		messagebox.showinfo('Success', 'Registration successfull.')
 	else:
@@ -48,7 +49,8 @@ def showMessages():
 			chatPanel.config(state = 'normal')
 			if response.text.strip() != "":
 				chatPanel.delete(1.0, END)
-				chatPanel.insert(END, f'{response.text.strip()}\n')
+				# chatPanel.insert(END, f'{response.text.strip()}\n')
+				chatPanel.insert(END, response.text.strip().replace("<br>", ""))
 			chatPanel.config(state = DISABLED)
 			time.sleep(1)
 	except:
