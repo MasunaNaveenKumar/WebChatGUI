@@ -25,7 +25,7 @@ def sendMessage(event = None):
 def register(userName, password, homeWindow):
 	# response = webChat_session.get("http://165.22.14.77:8080/Naveen/28may/register.jsp?UserName="+userName+"&Password="+password)
 	response = webChat_session.get(f'{url}/register.jsp?UserName={userName}&Password={password}')
-	if(response.text.find("success")) > 0:
+	if(response.text.find("Registration")) > 0:
 		messagebox.showinfo('Success', 'Registration successfull.')
 	else:
 		messagebox.showinfo('Error', 'Try with another username.')
@@ -106,7 +106,7 @@ def showChatWindow(name):
 
 def login(userName, password, homeWindow):
 	response = webChat_session.get(f'{url}login.jsp?uName={userName}&pswd={password}')
-	if(response.text.find("success")) > 0:
+	if(response.text.find("Login")) > 0:
 		messagebox.showinfo('Message', 'Successfully Logged in.')
 		homeWindow.destroy()
 		showChatWindow(userName)
